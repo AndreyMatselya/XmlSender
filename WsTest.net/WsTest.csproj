@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+      <ProductVersion>8.0.30703</ProductVersion>
+      <SchemaVersion>2.0</SchemaVersion>
+      <ProjectGuid>{E463B8B8-5EFC-4D2B-AF06-D341026C5F1D}</ProjectGuid>
+      <OutputType>WinExe</OutputType>
+      <StartupObject>WsTest.Units.WsTest</StartupObject>
+      <AppDesignerFolder>Properties</AppDesignerFolder>
+      <RootNamespace>WsTest</RootNamespace>
+      <AssemblyName>WsTest</AssemblyName>
+      <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+      <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+      <FileAlignment>512</FileAlignment>
+</PropertyGroup>
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>full</DebugType>
+      <Optimize>false</Optimize>
+      <OutputPath>bin\Debug\</OutputPath>
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <ErrorReport>prompt</ErrorReport>
+      <WarningLevel>4</WarningLevel>
+</PropertyGroup>
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+      <DebugType>pdbonly</DebugType>
+      <Optimize>true</Optimize>
+      <OutputPath>bin\Release\</OutputPath>
+      <DefineConstants>TRACE</DefineConstants>
+      <ErrorReport>prompt</ErrorReport>
+      <WarningLevel>4</WarningLevel>
+</PropertyGroup>
+<ItemGroup>
+      <Reference Include="System" />
+      <Reference Include="System.Core" />
+      <Reference Include="System.Xml.Linq" />
+      <Reference Include="System.Data" />
+      <Reference Include="System.Xml" />
+      <Reference Include="System.Windows.Forms" />
+      <Reference Include="System.Drawing" />
+</ItemGroup>
+<ItemGroup>
+      <Compile Include= "CommonWsItf.cs">
+            <SubType>Code</SubType>
+      </Compile> 
+      <Compile Include= "SecHeader.cs">
+            <SubType>Code</SubType>
+      </Compile> 
+      <Compile Include= "WsTest.cs">
+            <SubType>Code</SubType>
+      </Compile> 
+      <Compile Include= "WsTestMain.cs">
+            <SubType>Form</SubType>
+      </Compile> 
+      <Compile Include= "WsTestMain.Designer.cs">
+             <DependentUpon>WsTestMain.cs</DependentUpon>
+      </Compile> 
+      <None Include="_delphi2cs.htm">
+            <SubType>Preview</SubType>
+      </None>
+</ItemGroup>
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+     <Target Name="AfterBuild">
+     </Target>
+-->
+</Project>

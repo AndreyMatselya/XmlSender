@@ -1,0 +1,343 @@
+<html><head><META HTTP-EQUIV="Content-Type" content="text/html;">
+<link rel="stylesheet" href="delphi2cs\service.css">
+<title>Migrates Information</title>
+<script language="javascript">
+function on_off () {
+oMe = window.event.srcElement
+var child = document.all[event.srcElement.getAttribute("child",false)];
+if (null != child)
+child.className = child.className == "collapsed" ? "expanded" : "collapsed";
+}
+function turn() {
+uMe = window.event.srcElement;
+var check = uMe.src.toLowerCase();
+if (check.lastIndexOf("plus.gif") != -1)
+{
+uMe.src = "delphi2cs/minus.gif"
+}
+else
+{
+	uMe.src = "delphi2cs/plus.gif"
+}
+}
+</script>
+</head>
+<body topmargin=0 leftmargin=0 rightmargin=0 onclick="on_off();">
+<h1>Migration Report of d:\for sender\wstest\</h1>
+<h2>This report shows you which Delphi files can be converted successfully by delphi2cs. </h2><br>
+<h2>Time:&nbsp;01.07.2014 18:16:56</h2>
+<h2>Converted Issues:</h2>
+<table width=98% border=1 bordercolor=white class=firsttable>
+<tr>
+<td nowrap class=tabhd  width="30%">Delphi Files</td>
+<td nowrap class=tabhd  width="30%">New C# Files</td>
+<td nowrap class=tabhd width="30%">Issues</td>
+<td nowrap class=tabhd width="5%">Total lines</td>
+</tr>
+<tr>
+<td><IMG class="expandable" height=11 onclick=turn() src="delphi2cs/plus.gif" width=9 child="file1">&nbsp;CommonWsItf.pas</td>
+<td>CommonWsItf.cs</td>
+<td>8</td>
+<td>2591</td>
+</tr>
+<tr class=collapsed id=file1  bgcolor="#ffffff"><td colspan=4>
+<table width=97% border=1 bordercolor="#dcdcdc" class=tablestyle>
+<tr nowrap class=attrhdr>
+<td>#</td>
+<td>Type</td>
+<td>Line No.</td>
+<td>Description</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>1</td>
+<td>Warning</td>
+<td>90</td>
+<td>Unsupported class 'TRemotable'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>2</td>
+<td>Warning</td>
+<td>278</td>
+<td>Unsupported class 'TXSDateTime'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>3</td>
+<td>Warning</td>
+<td>355</td>
+<td>Unsupported class 'TXSDate'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>4</td>
+<td>Warning</td>
+<td>710</td>
+<td>Unsupported class 'ERemotableException'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>5</td>
+<td>Warning</td>
+<td>1145</td>
+<td>Unsupported class 'getLexemStatus'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>6</td>
+<td>Warning</td>
+<td>1146</td>
+<td>Unsupported class 'getClassifierChange'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>7</td>
+<td>Warning</td>
+<td>1149</td>
+<td>Unsupported class 'THTTPRIO'.</td>
+</tr>
+<tr class=errorhd>
+<td  width=10>8</td>
+<td>Error</td>
+<td>531</td>
+<td>Delphi2CS trial converts the .pas file that is less than 500 lines.</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><IMG class="expandable" height=11 onclick=turn() src="delphi2cs/plus.gif" width=9 child="file2">&nbsp;SecHeader.pas</td>
+<td>SecHeader.cs</td>
+<td>8</td>
+<td>69</td>
+</tr>
+<tr class=collapsed id=file2  bgcolor="#ffffff"><td colspan=4>
+<table width=97% border=1 bordercolor="#dcdcdc" class=tablestyle>
+<tr nowrap class=attrhdr>
+<td>#</td>
+<td>Type</td>
+<td>Line No.</td>
+<td>Description</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>1</td>
+<td>Warning</td>
+<td>10</td>
+<td>Unsupported class 'TRemotable'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>2</td>
+<td>Warning</td>
+<td>19</td>
+<td>Unsupported class 'TSOAPHeader'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>3</td>
+<td>Warning</td>
+<td>60</td>
+<td>Unsupported property or method(C): 'UsernameToken'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>4</td>
+<td>Warning</td>
+<td>66</td>
+<td>Unsupported function or procedure: 'TypeInfo'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>5</td>
+<td>Warning</td>
+<td>66</td>
+<td>Undeclared identifier(3): 'InvRegistry'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>6</td>
+<td>Warning</td>
+<td>66</td>
+<td>Unsupported property or method(B): 'RegisterHeaderClass'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>7</td>
+<td>Warning</td>
+<td>67</td>
+<td>Undeclared identifier(3): 'RemClassRegistry'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>8</td>
+<td>Warning</td>
+<td>67</td>
+<td>Unsupported property or method(B): 'RegisterXSClass'</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><IMG class="expandable" height=11 onclick=turn() src="delphi2cs/plus.gif" width=9 child="file3">&nbsp;WsTest.dpr</td>
+<td>WsTest.cs</td>
+<td>1</td>
+<td>15</td>
+</tr>
+<tr class=collapsed id=file3  bgcolor="#ffffff"><td colspan=4>
+<table width=97% border=1 bordercolor="#dcdcdc" class=tablestyle>
+<tr nowrap class=attrhdr>
+<td>#</td>
+<td>Type</td>
+<td>Line No.</td>
+<td>Description</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>1</td>
+<td>Warning</td>
+<td>9</td>
+<td>Unable to convert 'D:\for sender\WsTest\WsTest.res' : Not find the link.exe of VC</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><IMG class="expandable" height=11 onclick=turn() src="delphi2cs/plus.gif" width=9 child="file4">&nbsp;WsTestMain.pas</td>
+<td>WsTestMain.cs<BR>WsTestMain.Designer.cs</td>
+<td>21</td>
+<td>208</td>
+</tr>
+<tr class=collapsed id=file4  bgcolor="#ffffff"><td colspan=4>
+<table width=97% border=1 bordercolor="#dcdcdc" class=tablestyle>
+<tr nowrap class=attrhdr>
+<td>#</td>
+<td>Type</td>
+<td>Line No.</td>
+<td>Description</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>1</td>
+<td>Warning</td>
+<td>13</td>
+<td>Unsupported class 'THTTPRIO'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>2</td>
+<td>Warning</td>
+<td>26</td>
+<td>Unsupported class 'TJvDatePickerEdit'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>3</td>
+<td>Warning</td>
+<td>81</td>
+<td>Unsupported class 'TJvXMLTree'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>4</td>
+<td>Warning</td>
+<td>114</td>
+<td>Unsupported class 'TSOAPHeader'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>5</td>
+<td>Warning</td>
+<td>115</td>
+<td>Unsupported class 'ISOAPHeaders'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>6</td>
+<td>Warning</td>
+<td>203</td>
+<td>Unsupported class 'ERemotableException'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>7</td>
+<td>Warning</td>
+<td>71</td>
+<td>Unsupported property or method(C): 'HTTPWebNode'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>8</td>
+<td>Warning</td>
+<td>71</td>
+<td>Unsupported property or method(D): 'Proxy'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>9</td>
+<td>Warning</td>
+<td>72</td>
+<td>Unsupported property or method(C): 'Service'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>10</td>
+<td>Warning</td>
+<td>73</td>
+<td>Unsupported property or method(C): 'Port'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>11</td>
+<td>Warning</td>
+<td>83</td>
+<td>Unsupported function or procedure: 'null'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>12</td>
+<td>Warning</td>
+<td>86</td>
+<td>Unsupported property or method(A): 'LoadFromStream'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>13</td>
+<td>Warning</td>
+<td>87</td>
+<td>Unsupported property or method(A): 'ParseXML'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>14</td>
+<td>Warning</td>
+<td>88</td>
+<td>Unsupported property or method(C): 'Text'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>15</td>
+<td>Warning</td>
+<td>90</td>
+<td>Unsupported property or method(A): 'Free'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>16</td>
+<td>Warning</td>
+<td>130</td>
+<td>Unsupported function or procedure: 'CReateGUID'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>17</td>
+<td>Warning</td>
+<td>134</td>
+<td>Unsupported class 'TXSDateTime'.</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>18</td>
+<td>Warning</td>
+<td>135</td>
+<td>Unsupported property or method(C): 'AsDateTime'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>19</td>
+<td>Warning</td>
+<td>172</td>
+<td>Undeclared identifier(3): 'ISOAPHeaders'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>20</td>
+<td>Warning</td>
+<td>174</td>
+<td>Unsupported property or method(A): 'Send'</td>
+</tr>
+<tr class=inc_con>
+<td  width=10>21</td>
+<td>Warning</td>
+<td>204</td>
+<td>Unsupported property or method(C): 'ClassName'</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan=2><IMG height=11 src="delphi2cs/minus.gif" width=9><font color=red>&nbsp;WsTest.csproj</font></td>
+<td colspan=2>The project for VS 2010</td>
+</tr>
+<tr valign=top class=foot >
+<td colspan=4>File(s): 4&nbsp;&nbsp;&nbsp;&nbsp; 
+ Total Lines: 2883<Br /><font color=white> .NET Ver: 4.0.30319.18444 <Br />OS Ver: Microsoft Windows NT 6.1.7601 Service Pack 1</font></td>
+</tr>
+</table>
+</body>
+</html>
