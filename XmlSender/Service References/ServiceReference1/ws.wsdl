@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://gisun.agatsystem.by/common/ws/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ws" targetNamespace="http://gisun.agatsystem.by/common/ws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://todes.by:8080/gisun/common/ws?xsd=1" namespace="http://gisun.agatsystem.by/common/ws/" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://todes.by:8080/gisun/common/ws?xsd=2" namespace="http://gisun.agatsystem.by/common/types/" />
+    </xsd:schema>
+  </types>
+  <message name="getPersonalData">
+    <part name="registerRequest" element="tns:register_request" />
+  </message>
+  <message name="getPersonalDataResponse">
+    <part name="registerResponse" element="tns:register_response" />
+  </message>
+  <message name="WsException_Exception">
+    <part name="fault" element="tns:exception" />
+  </message>
+  <message name="getPersonIdentif">
+    <part name="registerPersonIdentifRequest" element="tns:register_person_identif_request" />
+  </message>
+  <message name="getPersonIdentifResponse">
+    <part name="registerResponse" element="tns:register_response" />
+  </message>
+  <message name="getLexemStatus">
+    <part name="getLexemStatus" element="tns:getLexemStatus" />
+  </message>
+  <message name="getLexemStatusResponse">
+    <part name="getLexemStatusResponse" element="tns:getLexemStatusResponse" />
+  </message>
+  <message name="getClassifierChange">
+    <part name="getClassifierChange" element="tns:getClassifierChange" />
+  </message>
+  <message name="getClassifierChangeResponse">
+    <part name="getClassifierChangeResponse" element="tns:getClassifierChangeResponse" />
+  </message>
+  <portType name="GisunCommonWsImpl">
+    <operation name="getPersonalData">
+      <input wsam:Action="urn:getPersonalData" message="tns:getPersonalData" />
+      <output wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getPersonalDataResponse" message="tns:getPersonalDataResponse" />
+      <fault wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getPersonalData/Fault/WsException_Exception" name="WsException_Exception" message="tns:WsException_Exception" />
+    </operation>
+    <operation name="getPersonIdentif">
+      <input wsam:Action="urn:getPersonIdentif" message="tns:getPersonIdentif" />
+      <output wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getPersonIdentifResponse" message="tns:getPersonIdentifResponse" />
+      <fault wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getPersonIdentif/Fault/WsException_Exception" name="WsException_Exception" message="tns:WsException_Exception" />
+    </operation>
+    <operation name="getLexemStatus">
+      <input wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getLexemStatusRequest" message="tns:getLexemStatus" />
+      <output wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getLexemStatusResponse" message="tns:getLexemStatusResponse" />
+      <fault wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getLexemStatus/Fault/WsException_Exception" name="WsException_Exception" message="tns:WsException_Exception" />
+    </operation>
+    <operation name="getClassifierChange">
+      <input wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getClassifierChangeRequest" message="tns:getClassifierChange" />
+      <output wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getClassifierChangeResponse" message="tns:getClassifierChangeResponse" />
+      <fault wsam:Action="http://gisun.agatsystem.by/common/ws/GisunCommonWsImpl/getClassifierChange/Fault/WsException_Exception" name="WsException_Exception" message="tns:WsException_Exception" />
+    </operation>
+  </portType>
+  <binding name="wsBinding" type="tns:GisunCommonWsImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getPersonalData">
+      <soap:operation soapAction="urn:getPersonalData" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WsException_Exception">
+        <soap:fault use="literal" name="WsException_Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getPersonIdentif">
+      <soap:operation soapAction="urn:getPersonIdentif" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WsException_Exception">
+        <soap:fault use="literal" name="WsException_Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getLexemStatus">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WsException_Exception">
+        <soap:fault use="literal" name="WsException_Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getClassifierChange">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WsException_Exception">
+        <soap:fault use="literal" name="WsException_Exception" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="ws">
+    <port name="ws" binding="tns:wsBinding">
+      <soap:address location="http://todes.by:8080/gisun/common/ws" />
+    </port>
+  </service>
+</definitions>

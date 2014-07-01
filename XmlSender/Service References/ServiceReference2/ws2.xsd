@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://gisun.agatsystem.by/common/ws/" xmlns:ns1="http://gisun.agatsystem.by/common/types/" elementFormDefault="qualified" targetNamespace="http://gisun.agatsystem.by/common/ws/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=3" namespace="http://gisun.agatsystem.by/common/types/" />
+  <xs:element name="classifier_change_request" type="tns:ClassifierChangeRequest" />
+  <xs:element name="classifier_change_response" type="ns1:ClassifierList" />
+  <xs:element name="classifier_info_list" type="tns:ClassifierInfoList" />
+  <xs:element name="errorList" type="tns:ErrorList" />
+  <xs:element name="lexem_status_list" type="tns:LexemStatusList" />
+  <xs:element name="register_person_identif_request" type="tns:RegisterPersonIdentifRequest" />
+  <xs:element name="register_request" type="tns:RegisterRequest" />
+  <xs:element name="register_response" type="tns:RegisterResponse" />
+  <xs:element name="return_code" type="tns:WsReturnCode" />
+  <xs:element name="select_classifier" type="xs:int" />
+  <xs:complexType name="RegisterResponse">
+    <xs:sequence>
+      <xs:element name="cover" type="ns1:MessageCover" />
+      <xs:element name="response" type="tns:ResponseData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="personal_data" type="tns:ResponsePerson" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="identif_number" type="tns:ResponseIdentif" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponsePerson">
+    <xs:sequence>
+      <xs:element name="request_id" type="xs:string" />
+      <xs:element name="data" type="ns1:PersonalData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseIdentif">
+    <xs:sequence>
+      <xs:element name="request_id" type="xs:string" />
+      <xs:element name="data" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="error" type="tns:WsError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WsError">
+    <xs:sequence>
+      <xs:element name="error_code" type="ns1:Classifier" />
+      <xs:element minOccurs="0" name="error_place" type="xs:string" />
+      <xs:element minOccurs="0" name="wrong_value" type="xs:string" />
+      <xs:element minOccurs="0" name="correct_value" type="xs:string" />
+      <xs:element minOccurs="0" name="check_name" type="xs:string" />
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element minOccurs="0" name="identif" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegisterRequest">
+    <xs:sequence>
+      <xs:element name="cover" type="ns1:MessageCover" />
+      <xs:element name="request" type="tns:RequestData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="person_request" type="tns:PersonRequest" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="identif_request" type="tns:IdentifRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonRequest">
+    <xs:sequence>
+      <xs:element name="request_id" type="xs:string" />
+      <xs:element name="identif_number" type="xs:string" />
+      <xs:element name="document" type="ns1:Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifRequest">
+    <xs:sequence>
+      <xs:element name="request_id" type="xs:string" />
+      <xs:element name="sex" type="ns1:Classifier" />
+      <xs:element name="birth_day" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassifierChangeRequest">
+    <xs:sequence>
+      <xs:element name="type" type="xs:int" />
+      <xs:element name="date" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassifierInfoList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="classifierInfo" type="tns:ClassifierInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassifierInfo">
+    <xs:sequence>
+      <xs:element name="type" type="xs:int" />
+      <xs:element name="date" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WsException">
+    <xs:sequence>
+      <xs:element name="cover" type="ns1:MessageCover" />
+      <xs:element minOccurs="0" name="error_list" type="tns:ErrorList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LexemStatusList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="lexemStatus" type="tns:LexemStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LexemStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="lexema" type="ns1:LangValueList" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WsReturnCode">
+    <xs:sequence>
+      <xs:element name="cover" type="ns1:MessageCover" />
+      <xs:element minOccurs="0" name="error_list" type="tns:ErrorList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClassifierChangeResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="classifier" type="ns1:Classifier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegisterPersonIdentifRequest">
+    <xs:sequence>
+      <xs:element name="cover" type="ns1:MessageCover" />
+      <xs:element name="request" type="tns:PersonIdentifRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentifRequest">
+    <xs:sequence>
+      <xs:element name="request_id" type="xs:string" />
+      <xs:element name="surname" type="xs:string" />
+      <xs:element name="name" type="xs:string" />
+      <xs:element name="sname" type="xs:string" />
+      <xs:element name="bdate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

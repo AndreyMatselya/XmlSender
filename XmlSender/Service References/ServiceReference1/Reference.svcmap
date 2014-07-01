@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c55635a5-0eaa-487b-8f5d-e3c6abadd666" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://todes.by:8080/gisun/common/ws?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ws.xsd" MetadataType="Schema" ID="c3e98229-4eaa-4761-a054-c4cdaa96eabe" SourceId="1" SourceUrl="http://todes.by:8080/gisun/common/ws?xsd=1" />
+    <MetadataFile FileName="ws1.xsd" MetadataType="Schema" ID="5fba0052-7f40-4071-b95f-9b1bbe222d84" SourceId="1" SourceUrl="http://todes.by:8080/gisun/common/ws?xsd=2" />
+    <MetadataFile FileName="ws.wsdl" MetadataType="Wsdl" ID="764bbfca-2d1d-46dc-8e71-7f450533688e" SourceId="1" SourceUrl="http://todes.by:8080/gisun/common/ws?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

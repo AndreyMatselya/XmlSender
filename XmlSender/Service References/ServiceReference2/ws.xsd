@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://gisun.agatsystem.by/common/types/" elementFormDefault="qualified" targetNamespace="http://gisun.agatsystem.by/common/types/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="document_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="authority" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="date_of_issue" type="xs:date" />
+      <xs:element minOccurs="0" name="expire_date" type="xs:date" />
+      <xs:element minOccurs="0" name="series" type="xs:string" />
+      <xs:element minOccurs="0" name="number" type="xs:string" />
+      <xs:element minOccurs="0" name="act_data" type="tns:ActData" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Classifier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="type" type="xs:int" />
+      <xs:element minOccurs="0" name="lexema" type="tns:LangValueList" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="begin_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="end_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="parents" type="tns:ClassifierList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LangValueList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="value" type="tns:LangValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LangValue">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ClassifierList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="classifier" type="tns:Classifier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="act_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="authority" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="date" type="xs:date" />
+      <xs:element minOccurs="0" name="number" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonalData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="identif" type="xs:string" />
+      <xs:element minOccurs="0" name="last_name" type="xs:string" />
+      <xs:element minOccurs="0" name="last_name_bel" type="xs:string" />
+      <xs:element minOccurs="0" name="last_name_lat" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="name_bel" type="xs:string" />
+      <xs:element minOccurs="0" name="name_lat" type="xs:string" />
+      <xs:element minOccurs="0" name="patronymic" type="xs:string" />
+      <xs:element minOccurs="0" name="patronymic_bel" type="xs:string" />
+      <xs:element minOccurs="0" name="patronymic_lat" type="xs:string" />
+      <xs:element minOccurs="0" name="sex" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="birth_day" type="xs:string" />
+      <xs:element minOccurs="0" name="birth_place">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="country_b" type="tns:Classifier" />
+            <xs:element minOccurs="0" name="area_b" type="xs:string" />
+            <xs:element minOccurs="0" name="area_b_bel" type="xs:string" />
+            <xs:element minOccurs="0" name="region_b" type="xs:string" />
+            <xs:element minOccurs="0" name="region_b_bel" type="xs:string" />
+            <xs:element minOccurs="0" name="type_city_b" type="tns:Classifier" />
+            <xs:element minOccurs="0" name="city_b" type="xs:string" />
+            <xs:element minOccurs="0" name="city_b_bel" type="xs:string" />
+            <xs:element minOccurs="0" name="city_b_ate" type="tns:Classifier" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="citizenship" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="status" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="addresses" type="tns:AddressList" />
+      <xs:element minOccurs="0" name="temp_addresses" type="tns:TempAddressList" />
+      <xs:element minOccurs="0" name="documents" type="tns:DocumentList" />
+      <xs:element minOccurs="0" name="family" type="tns:FamilyList" />
+      <xs:element minOccurs="0" name="deaths" type="tns:DeathList" />
+      <xs:element minOccurs="0" name="citizenships" type="tns:CitizenshipList" />
+      <xs:element minOccurs="0" name="pensions" type="tns:PensionList" />
+      <xs:element minOccurs="0" name="militaries" type="tns:MilitaryList" />
+      <xs:element minOccurs="0" name="taxies" type="tns:TaxList" />
+      <xs:element minOccurs="0" name="scienceDegrees" type="tns:ScienceDegreeList" />
+      <xs:element minOccurs="0" name="scienceRanks" type="tns:ScienceRankList" />
+      <xs:element minOccurs="0" name="insurances" type="tns:InsuranceList" />
+      <xs:element minOccurs="0" name="educations" type="tns:EducationList" />
+      <xs:element minOccurs="0" name="courts" type="tns:CourtList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="address" type="tns:Address" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="country" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="area" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="region" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="soviet" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="locality_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="locality" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="city_region" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="street_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="street" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="house" type="xs:string" />
+      <xs:element minOccurs="0" name="building" type="xs:string" />
+      <xs:element minOccurs="0" name="flat" type="xs:string" />
+      <xs:element minOccurs="0" name="reg_date" type="xs:date" />
+      <xs:element minOccurs="0" name="reg_date_till" type="xs:date" />
+      <xs:element minOccurs="0" name="sign_away" type="xs:boolean" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TempAddressList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="temp_address" type="tns:Address" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="document" type="tns:Document" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FamilyList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="relationship" type="tns:Family" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Family">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="relationship" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="is_owner" type="xs:boolean" />
+      <xs:element minOccurs="0" name="rel_id" type="xs:string" />
+      <xs:element minOccurs="0" name="begin_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="end_date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeathList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="death" type="tns:Death" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Death">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="death_cause" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="death_date" type="xs:string" />
+      <xs:element minOccurs="0" name="decease_place">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="country_d" type="tns:Classifier" />
+            <xs:element minOccurs="0" name="area_d" type="xs:string" />
+            <xs:element minOccurs="0" name="area_d_bel" type="xs:string" />
+            <xs:element minOccurs="0" name="region_d" type="xs:string" />
+            <xs:element minOccurs="0" name="region_d_bel" type="xs:string" />
+            <xs:element minOccurs="0" name="type_city_d" type="tns:Classifier" />
+            <xs:element minOccurs="0" name="city_d" type="xs:string" />
+            <xs:element minOccurs="0" name="city_d_bel" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="death_place" type="xs:string" />
+      <xs:element minOccurs="0" name="burial_place" type="xs:string" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CitizenshipList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="citizenship" type="tns:Citizenship" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Citizenship">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="citizenship_change" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="citizenship_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="date_citizenship" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PensionList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="pension" type="tns:Pension" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Pension">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="pension_type" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="pension_awarding_date" type="xs:date" />
+      <xs:element minOccurs="0" name="pension_suspension_date" type="xs:date" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MilitaryList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="military" type="tns:Military" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Military">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="military_service_awarding_date" type="xs:date" />
+      <xs:element minOccurs="0" name="military_service_suspension_date" type="xs:date" />
+      <xs:element name="active" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TaxList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="tax" type="tns:Tax" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Tax">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="tax_awarding_date" type="xs:date" />
+      <xs:element minOccurs="0" name="tax_number" type="xs:string" />
+      <xs:element minOccurs="0" name="tax_debt_data" type="xs:int" />
+      <xs:element name="active" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScienceDegreeList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="scienceDegree" type="tns:ScienceDegree" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScienceDegree">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="science_degree" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="science_degree_date" type="xs:date" />
+      <xs:element minOccurs="0" name="science_degree_number" type="xs:string" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScienceRankList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="scienceRank" type="tns:ScienceRank" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScienceRank">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="science_rank" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="science_rank_date" type="xs:date" />
+      <xs:element minOccurs="0" name="science_rank_number" type="xs:string" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InsuranceList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="insurance" type="tns:Insurance" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Insurance">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="insurance_awarding_date" type="xs:date" />
+      <xs:element minOccurs="0" name="insurance_suspension_date" type="xs:string" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EducationList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="education" type="tns:Education" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Education">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="education_specialization" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="education_department" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="education_begin_data" type="xs:date" />
+      <xs:element minOccurs="0" name="education_end_data" type="xs:date" />
+      <xs:element minOccurs="0" name="education_record_number" type="xs:integer" />
+      <xs:element minOccurs="0" name="active" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourtList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="deathData" type="tns:CourtDeathData" />
+      <xs:element maxOccurs="unbounded" name="absentData" type="tns:CourtAbsentData" />
+      <xs:element maxOccurs="unbounded" name="unefficientData" type="tns:CourtUnefficientData" />
+      <xs:element maxOccurs="unbounded" name="restrictefficientData" type="tns:CourtRestrictEfficientData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourtDeathData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:courtDecision">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="death_date" type="xs:date" />
+          <xs:element minOccurs="0" name="death_date_cancel" type="xs:date" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="courtDecision" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="access" type="tns:Classifier" />
+      <xs:element name="active" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CourtAbsentData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:courtDecision">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="absent_date" type="xs:date" />
+          <xs:element minOccurs="0" name="absent_date_cancel" type="xs:date" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CourtUnefficientData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:courtDecision">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="unefficient_date" type="xs:date" />
+          <xs:element minOccurs="0" name="unefficient_date_cancel" type="xs:date" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CourtRestrictEfficientData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:courtDecision">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="restrict_unefficient_date" type="xs:date" />
+          <xs:element minOccurs="0" name="restrict_unefficient_date_cancel" type="xs:date" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MessageCover">
+    <xs:sequence>
+      <xs:element name="message_id" type="xs:string" />
+      <xs:element name="message_type" type="tns:Classifier" />
+      <xs:element name="message_time" type="xs:dateTime" />
+      <xs:element name="message_source" type="tns:Classifier" />
+      <xs:element minOccurs="0" name="parent_message_id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

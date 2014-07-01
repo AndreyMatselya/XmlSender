@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://gisun.agatsystem.by/pension/ws/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ws" targetNamespace="http://gisun.agatsystem.by/pension/ws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=1" namespace="http://gisun.agatsystem.by/pension/types/" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=2" namespace="http://gisun.agatsystem.by/common/ws/" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=3" namespace="http://gisun.agatsystem.by/common/types/" />
+    </xsd:schema>
+  </types>
+  <message name="postPensionData">
+    <part xmlns:ns1="http://gisun.agatsystem.by/pension/types/" name="pensionData" element="ns1:pension_data_request" />
+  </message>
+  <message name="postPensionDataResponse">
+    <part xmlns:ns2="http://gisun.agatsystem.by/pension/types/" name="return" element="ns2:return_code" />
+  </message>
+  <portType name="PensionWS">
+    <operation name="postPensionData">
+      <input wsam:Action="urn:postPensionData" message="tns:postPensionData" />
+      <output wsam:Action="http://gisun.agatsystem.by/pension/ws/PensionWS/postPensionDataResponse" message="tns:postPensionDataResponse" />
+    </operation>
+  </portType>
+  <binding name="PensionWSBinding" type="tns:PensionWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="postPensionData">
+      <soap:operation soapAction="urn:postPensionData" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ws">
+    <port name="PensionWS" binding="tns:PensionWSBinding">
+      <soap:address location="http://todes.by:8080/gisun/pension/ws" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ns1="http://gisun.agatsystem.by/common/types/" xmlns:ns2="http://gisun.agatsystem.by/common/ws/" elementFormDefault="qualified" targetNamespace="http://gisun.agatsystem.by/pension/types/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=3" namespace="http://gisun.agatsystem.by/common/types/" />
+  <xs:import schemaLocation="http://todes.by:8080/gisun/pension/ws?xsd=2" namespace="http://gisun.agatsystem.by/common/ws/" />
+  <xs:element name="pension_data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cover" type="ns1:MessageCover" />
+        <xs:element name="pension_info">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="person_data" type="ns1:PersonalData" />
+              <xs:element name="pension_data" type="ns1:Pension" />
+              <xs:element minOccurs="0" name="pension_document" type="ns1:Document" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pension_data_request" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cover" type="ns1:MessageCover" />
+        <xs:element name="pension_info">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="person_data" type="ns1:PersonalData" />
+              <xs:element name="pension_data" type="ns1:Pension" />
+              <xs:element minOccurs="0" name="pension_document" type="ns1:Document" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="return_code" nillable="true" type="ns2:WsReturnCode" />
+</xs:schema>

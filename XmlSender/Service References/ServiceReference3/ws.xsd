@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ns1="http://gisun.agatsystem.by/common/types/" xmlns:ns2="http://gisun.agatsystem.by/common/ws/" elementFormDefault="qualified" targetNamespace="http://gisun.agatsystem.by/insurance/types/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://todes.by:8080/gisun/insurance/ws?xsd=3" namespace="http://gisun.agatsystem.by/common/types/" />
+  <xs:import schemaLocation="http://todes.by:8080/gisun/insurance/ws?xsd=2" namespace="http://gisun.agatsystem.by/common/ws/" />
+  <xs:element name="insurance_data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cover" type="ns1:MessageCover" />
+        <xs:element name="insurance_info">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="person_data" type="ns1:PersonalData" />
+              <xs:element name="insurance_document" type="ns1:Document" />
+              <xs:element name="insurance_data" type="ns1:Insurance" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="insurance_data_request" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cover" type="ns1:MessageCover" />
+        <xs:element name="insurance_info">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="person_data" type="ns1:PersonalData" />
+              <xs:element name="insurance_document" type="ns1:Document" />
+              <xs:element name="insurance_data" type="ns1:Insurance" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="return_code" nillable="true" type="ns2:WsReturnCode" />
+</xs:schema>
