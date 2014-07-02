@@ -32,6 +32,7 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.историяОперацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button2 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,11 +70,22 @@
 			this.историяОперацийToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
 			this.историяОперацийToolStripMenuItem.Text = "История операций";
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(52, 264);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(161, 23);
+			this.button2.TabIndex = 2;
+			this.button2.Text = "Сериализация";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(537, 374);
+			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -87,11 +99,12 @@
 		}
 
 		#endregion
-
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem историяОперацийToolStripMenuItem;
+		private System.Windows.Forms.Button button2;
+
 	}
 }
 

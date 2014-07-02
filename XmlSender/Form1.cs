@@ -24,6 +24,139 @@ using Message = System.ServiceModel.Channels.Message;
 
 namespace XmlSender
 {
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+			//var list = new List<insurance_data_request>();
+			//list.Add(new insurance_data_request()
+			//{
+			//	cover = new ServiceReference3.MessageCover() { message_source = new ServiceReference3.Classifier() }
+			//});
+			//var ser = new XmlSerializer(typeof(List<insurance_data_request>));
+			//using (var writer = XmlWriter.Create("filex.xml"))
+			//{
+			//	ser.Serialize(writer,list);
+			//}
+		}
+
+		private List<insurance_data_request> file;
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+
+
+			var client = new ServiceReference3.InsuranceWSClient("InsuranceWS");
+			MessageHeader.CreateHeader("dfg", "sdfg", new { dsfgs = "dfg" });
+
+			//using (new OperationContextScope(client.InnerChannel))
+			//{
+
+			//	// We will use a custom class called UserInfo to be passed in as a MessageHeader
+
+
+
+
+
+			//	// Add a SOAP Header to an outgoing request
+
+			//	var aMessageHeader = MessageHeader.CreateHeader("Security", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", header);
+
+			//	OperationContext.Current.OutgoingMessageHeaders.Add(aMessageHeader);
+
+
+
+			//}
+			var response = client.postInsuranceData(new insurance_data_request()
+			{
+				cover = new ServiceReference3.MessageCover()
+				{
+					message_id = Guid.NewGuid().ToString(),
+					message_time = DateTime.Now
+				}
+			});
+		}
+
+
+		private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Stream myStream = null;
+
+
+			var openFileDialog1 = new OpenFileDialog();
+
+			//openFileDialog1.InitialDirectory = "c:\\";
+			openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+			openFileDialog1.FilterIndex = 1;
+			openFileDialog1.RestoreDirectory = true;
+
+			//if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			//{
+			//	try
+			//	{
+			//		if ((myStream = openFileDialog1.OpenFile()) != null)
+			//		{
+			//			using (myStream)
+			//			{
+			//				var serializer = new XmlSerializer(typeof(List<insurance_data_request>), new XmlRootAttribute("root"));
+			//				serializer.UnknownElement += serializer_UnknownElement;
+			//				file = (List<insurance_data_request>)serializer.Deserialize(myStream);
+			//			}
+			//		}
+			//	}
+			//	catch (Exception ex)
+			//	{
+			//		MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+			//	}
+			//}
+
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				try
+				{
+					if ((myStream = openFileDialog1.OpenFile()) != null)
+					{
+						using (myStream)
+						{
+							var serializer = new XmlSerializer(typeof(Root));
+							serializer.UnknownElement += serializer_UnknownElement;
+							var file1 = (Root)serializer.Deserialize(myStream);
+							using (var writer = XmlWriter.Create("root1.xml"))
+							{
+								serializer.Serialize(writer, file1);
+							}
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+				}
+			}
+		}
+
+		void serializer_UnknownElement(object sender, XmlElementEventArgs e)
+		{
+			var t = e.Element;
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			//var root = new Root();
+			//root.Items = new List<InsuranceDataRequest>();
+			//root.Items.Add(new InsuranceDataRequest() { Identif = "123123", LastName = "Андрей" });
+			//root.Items.Add(new InsuranceDataRequest() { Identif = "423423424", LastName = "Валера" });
+			//var ser = new XmlSerializer(typeof(Root));
+			//using (var writer = XmlWriter.Create("root.xml"))
+			//{
+			//	ser.Serialize(writer, root);
+			//}
+		}
+	}
+
+
+
 	public class UsernameToken : MessageHeader
 	{
 		public string Username
@@ -154,97 +287,5 @@ namespace XmlSender
 		}
 	} 
 
-	public partial class Form1 : Form
-	{
-		public Form1()
-		{
-			InitializeComponent();
-			//var list = new List<insurance_data_request>();
-			//list.Add(new insurance_data_request()
-			//{
-			//	cover = new ServiceReference3.MessageCover() { message_source = new ServiceReference3.Classifier() }
-			//});
-			//var ser = new XmlSerializer(typeof(List<insurance_data_request>));
-			//using (var writer = XmlWriter.Create("filex.xml"))
-			//{
-			//	ser.Serialize(writer,list);
-			//}
-		}
 
-		private List<insurance_data_request> file;
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-
-
-			var client = new ServiceReference3.InsuranceWSClient("InsuranceWS");
-			MessageHeader.CreateHeader("dfg", "sdfg", new {dsfgs = "dfg"});
-
-			//using (new OperationContextScope(client.InnerChannel))
-			//{
-
-			//	// We will use a custom class called UserInfo to be passed in as a MessageHeader
-
-
-
-
-
-			//	// Add a SOAP Header to an outgoing request
-
-			//	var aMessageHeader = MessageHeader.CreateHeader("Security", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd", header);
-
-			//	OperationContext.Current.OutgoingMessageHeaders.Add(aMessageHeader);
-
-
-
-			//}
-			var response = client.postInsuranceData(new insurance_data_request()
-			{
-				cover = new ServiceReference3.MessageCover()
-				{
-					message_id = Guid.NewGuid().ToString(),
-					message_time = DateTime.Now
-				}
-			});
-		}
-
-
-		private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Stream myStream = null;
-
-
-			var openFileDialog1 = new OpenFileDialog();
-
-			//openFileDialog1.InitialDirectory = "c:\\";
-			openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-			openFileDialog1.FilterIndex = 1;
-			openFileDialog1.RestoreDirectory = true;
-
-			if (openFileDialog1.ShowDialog() == DialogResult.OK)
-			{
-				try
-				{
-					if ((myStream = openFileDialog1.OpenFile()) != null)
-					{
-						using (myStream)
-						{
-							var serializer = new XmlSerializer(typeof(List<insurance_data_request>), new XmlRootAttribute("root"));
-							serializer.UnknownElement += serializer_UnknownElement;
-							file = (List<insurance_data_request>)serializer.Deserialize(myStream);
-						}
-					}
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-				}
-			}
-		}
-
-		void serializer_UnknownElement(object sender, XmlElementEventArgs e)
-		{
-			var t = e.Element;
-		}
-	}
 }
