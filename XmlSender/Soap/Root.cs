@@ -6,17 +6,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XmlSender.ServiceReference3;
 
-namespace XmlSender
+namespace XmlSender.Soap
 {
-	public class InsuranceDataRequest
-	{
-		[XmlElement(Namespace = "http://gisun.agatsystem.by/common/types/", ElementName = "identif")]
-		public string Identif { get; set; }
-
-		[XmlElement(Namespace = "http://gisun.agatsystem.by/common/types/", ElementName = "last_name")]
-		public string LastName { get; set; }
-	}
-
 	[XmlRoot(ElementName = "root")]
 	public class Root
 	{
