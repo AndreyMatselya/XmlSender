@@ -29,13 +29,13 @@
 		private void InitializeComponent()
 		{
 			this.postButton = new System.Windows.Forms.Button();
+			this.openFileButton = new System.Windows.Forms.Button();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.историяОперацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.протоколToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.selectedFilePathTextBox = new System.Windows.Forms.TextBox();
-			this.selectFileButton = new System.Windows.Forms.Button();
 			this.selectedFileLabel = new System.Windows.Forms.Label();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -55,6 +55,17 @@
 			this.postButton.Text = "Отправить";
 			this.postButton.UseVisualStyleBackColor = true;
 			this.postButton.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// openFileButton
+			// 
+			this.openFileButton.Location = new System.Drawing.Point(536, 91);
+			this.openFileButton.Name = "openFileButton";
+			this.openFileButton.Size = new System.Drawing.Size(37, 23);
+			this.openFileButton.TabIndex = 3;
+			this.openFileButton.Text = "...";
+			this.openFileButton.UseVisualStyleBackColor = true;
+			this.openFileButton.Visible = false;
+			this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
 			// 
 			// menuStrip1
 			// 
@@ -93,27 +104,18 @@
 			// протоколToolStripMenuItem
 			// 
 			this.протоколToolStripMenuItem.Name = "протоколToolStripMenuItem";
-			this.протоколToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+			this.протоколToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.протоколToolStripMenuItem.Text = "Протокол";
+			this.протоколToolStripMenuItem.Click += new System.EventHandler(this.протоколToolStripMenuItem_Click);
 			// 
 			// selectedFilePathTextBox
 			// 
+			this.selectedFilePathTextBox.Enabled = false;
 			this.selectedFilePathTextBox.Location = new System.Drawing.Point(110, 93);
 			this.selectedFilePathTextBox.Name = "selectedFilePathTextBox";
 			this.selectedFilePathTextBox.Size = new System.Drawing.Size(420, 20);
 			this.selectedFilePathTextBox.TabIndex = 2;
 			this.selectedFilePathTextBox.Visible = false;
-			// 
-			// selectFileButton
-			// 
-			this.selectFileButton.Location = new System.Drawing.Point(536, 91);
-			this.selectFileButton.Name = "selectFileButton";
-			this.selectFileButton.Size = new System.Drawing.Size(37, 23);
-			this.selectFileButton.TabIndex = 3;
-			this.selectFileButton.Text = "...";
-			this.selectFileButton.UseVisualStyleBackColor = true;
-			this.selectFileButton.Visible = false;
-			this.selectFileButton.Click += new System.EventHandler(this.selectFileButton_Click);
 			// 
 			// selectedFileLabel
 			// 
@@ -148,8 +150,7 @@
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
 			// 
 			// Form1
 			// 
@@ -158,7 +159,7 @@
 			this.ClientSize = new System.Drawing.Size(763, 237);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.selectedFileLabel);
-			this.Controls.Add(this.selectFileButton);
+			this.Controls.Add(this.openFileButton);
 			this.Controls.Add(this.selectedFilePathTextBox);
 			this.Controls.Add(this.postButton);
 			this.Controls.Add(this.menuStrip1);
@@ -184,7 +185,7 @@
 		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem протоколToolStripMenuItem;
 		private System.Windows.Forms.TextBox selectedFilePathTextBox;
-		private System.Windows.Forms.Button selectFileButton;
+		private System.Windows.Forms.Button openFileButton;
 		private System.Windows.Forms.Label selectedFileLabel;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.StatusStrip statusStrip1;

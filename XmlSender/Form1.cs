@@ -36,7 +36,7 @@ namespace XmlSender
 			backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
 			backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
 			backgroundWorker.RunWorkerAsync();
-			this.postButton.Enabled = false;
+			SwitchControlsAtTimePostData(false);
 			//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
 		}
 
@@ -50,8 +50,15 @@ namespace XmlSender
 		void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
-			this.postButton.Enabled = true;
+			SwitchControlsAtTimePostData(true);
 			MessageBox.Show("Отправка данных завершена", "Информация!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		void SwitchControlsAtTimePostData(bool flag)
+		{
+			this.postButton.Enabled = flag;
+			this.openToolStripMenuItem.Enabled = flag;
+			this.openFileButton.Enabled = flag;
 		}
 
 		private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -125,7 +132,7 @@ namespace XmlSender
 			ShowOpenFileDialog();
 		}
 
-		private void selectFileButton_Click(object sender, EventArgs e)
+		private void openFileButton_Click(object sender, EventArgs e)
 		{
 			ShowOpenFileDialog();
 		}
@@ -161,7 +168,7 @@ namespace XmlSender
 		private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			var openFileDialog = ((OpenFileDialog) sender);
-			selectFileButton.Visible = true;
+			openFileButton.Visible = true;
 			selectedFileLabel.Visible = true;
 			selectedFilePathTextBox.Visible = true;
 			selectedFilePathTextBox.Text = openFileDialog.FileName;
@@ -194,6 +201,11 @@ namespace XmlSender
 			{
 				MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		private void протоколToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("История операций не реализована", "Информация!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 
