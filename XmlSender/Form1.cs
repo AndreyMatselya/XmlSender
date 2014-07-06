@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
 using System.Security.Authentication;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -11,31 +9,28 @@ using XmlSender.Data;
 using XmlSender.Data.Entities;
 using XmlSender.ServiceReference3;
 using XmlSender.Soap;
-using XmlSender.Soap.Header;
 
 namespace XmlSender
 {
 	public partial class Form1 : Form
 	{
-		private Root file;
-		private SoapClient _soapClient;
-
-
 		public Form1()
 		{
 			InitializeComponent();
 			_soapClient = new SoapClient();
 		}
 
-		private BackgroundWorker backgroundWorker;
+		private Root _file;
+		private readonly SoapClient _soapClient;
+		private BackgroundWorker _backgroundWorker;
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			backgroundWorker = new BackgroundWorker {WorkerReportsProgress = true};
-			backgroundWorker.DoWork += backgroundWorker_DoWork;
-			backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
-			backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
-			backgroundWorker.RunWorkerAsync();
+			_backgroundWorker = new BackgroundWorker {WorkerReportsProgress = true};
+			_backgroundWorker.DoWork += backgroundWorker_DoWork;
+			_backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+			_backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
+			_backgroundWorker.RunWorkerAsync();
 			SwitchControlsAtTimePostData(false);
 			//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
 		}
@@ -66,13 +61,13 @@ namespace XmlSender
 			var xmlId = Guid.NewGuid();
 			using (_soapClient)
 			{
-				for (var i = 0; i < file.Items.Count; i++)
+				for (var i = 0; i < _file.Items.Count; i++)
 				{
 					WsReturnCode soapResponse;
 					try
 					{
 
-						var idr = file.Items[i];
+						var idr = _file.Items[i];
 						soapResponse = _soapClient.PostData(idr);
 						//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
 					}
@@ -84,7 +79,7 @@ namespace XmlSender
 					}
 					finally
 					{
-						backgroundWorker.ReportProgress((100 * (i + 1)) / file.Items.Count, string.Format("{0}/{1}", i + 1, file.Items.Count));
+						_backgroundWorker.ReportProgress((100 * (i + 1)) / _file.Items.Count, string.Format("{0}/{1}", i + 1, _file.Items.Count));
 					}
 					try
 					{
@@ -102,7 +97,7 @@ namespace XmlSender
 					}
 					finally
 					{
-						backgroundWorker.ReportProgress((100 * (i + 1)) / file.Items.Count, string.Format("{0}/{1}", i + 1, file.Items.Count));
+						_backgroundWorker.ReportProgress((100 * (i + 1)) / _file.Items.Count, string.Format("{0}/{1}", i + 1, _file.Items.Count));
 					}
 				}
 			}
@@ -124,7 +119,7 @@ namespace XmlSender
 			MessageBox.Show(
 				string.Format("Ошибка при чтении документа. Неизвестный элемент: {0}. Строка: {1}", e.Element.Name,
 					e.LineNumber), "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			file = null;
+			_file = null;
 		}
 
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,7 +148,7 @@ namespace XmlSender
 					{
 						var serializer = new XmlSerializer(typeof(Root));
 						serializer.UnknownElement += serializer_UnknownElement;
-						file = (Root)serializer.Deserialize(myStream);
+						_file = (Root)serializer.Deserialize(myStream);
 						this.postButton.Enabled = true;
 					}
 				}
