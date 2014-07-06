@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSender", "XmlSender\XmlSender.csproj", "{0B41358C-3E55-4083-A9C3-4EB9B6453B5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsTest", "WsTest.net\WsTest.csproj", "{E463B8B8-5EFC-4D2B-AF06-D341026C5F1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSender.Data", "XmlSender.Data\XmlSender.Data.csproj", "{18D75C95-DA88-460F-986B-AB7146C4A942}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +17,10 @@ Global
 		{0B41358C-3E55-4083-A9C3-4EB9B6453B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B41358C-3E55-4083-A9C3-4EB9B6453B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B41358C-3E55-4083-A9C3-4EB9B6453B5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E463B8B8-5EFC-4D2B-AF06-D341026C5F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E463B8B8-5EFC-4D2B-AF06-D341026C5F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E463B8B8-5EFC-4D2B-AF06-D341026C5F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D75C95-DA88-460F-986B-AB7146C4A942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D75C95-DA88-460F-986B-AB7146C4A942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D75C95-DA88-460F-986B-AB7146C4A942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D75C95-DA88-460F-986B-AB7146C4A942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

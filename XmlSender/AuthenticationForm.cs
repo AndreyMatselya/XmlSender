@@ -27,7 +27,6 @@ namespace XmlSender
 		{
 			UsernameToken.Current.Username = loginTextBox.Text;
 			UsernameToken.Current.Password = passwordTextBox.Text;
-			this.Close();
 			var form1 = (Form1)Application.OpenForms["Form1"];
 			form1.Authenticate();
 		}

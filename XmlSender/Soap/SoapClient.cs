@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Authentication;
 using System.ServiceModel;
+using XmlSender.Exceptions;
+using XmlSender.Extensions;
 using XmlSender.ServiceReference3;
+using XmlSender.Soap.Enums;
 
 namespace XmlSender.Soap
 {
@@ -19,26 +24,19 @@ namespace XmlSender.Soap
 			_insuranceClient = new InsuranceWSClient("InsuranceWS");
 		}
 
-		internal void PostData(IEnumerable<insurance_data_request> idrs)
+		internal WsReturnCode PostData(insurance_data_request idr)
 		{
 			if (_insuranceClient.State == CommunicationState.Closed)
 			{
 				CreateNewConection();
 			}
-			using (_insuranceClient)
+			try
 			{
-				foreach (var idr in idrs)
-				{
-					try
-					{
-						_insuranceClient.postInsuranceData(idr);
-					}
-					catch (Exception ex)
-					{
-						throw ex;
-					}
-
-				}
+				return _insuranceClient.postInsuranceData(idr);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
 			}
 		}
 
@@ -48,10 +46,18 @@ namespace XmlSender.Soap
 			{
 				CreateNewConection();
 			}
+			WsReturnCode response;
 			using (_insuranceClient)
 			{
-				var response = _insuranceClient.postInsuranceData(new insurance_data_request());
+				response = _insuranceClient.postInsuranceData(new insurance_data_request());
 			}
+			if (response.error_list.Any(x => x.error_code.code == ErrorType.AuthorizationError.GetDescription()))
+			{
+				throw new System.Security.Authentication.AuthenticationException(
+					response.error_list.FirstOrDefault(x => x.error_code.code == ErrorType.AuthorizationError.GetDescription())
+						.description);
+			}
+			User.CurrentUser.IsAuthenticated = true;
 		}
 
 		public void Dispose()
