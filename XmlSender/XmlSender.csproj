@@ -78,7 +78,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Soap\CurrentUser.cs" />
+    <Compile Include="Soap\User.cs" />
     <Compile Include="Soap\Enums\ErrorType.cs" />
     <Compile Include="Soap\Root.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
