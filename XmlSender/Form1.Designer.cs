@@ -104,7 +104,7 @@
 			// протоколToolStripMenuItem
 			// 
 			this.протоколToolStripMenuItem.Name = "протоколToolStripMenuItem";
-			this.протоколToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.протоколToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
 			this.протоколToolStripMenuItem.Text = "Протокол";
 			this.протоколToolStripMenuItem.Click += new System.EventHandler(this.протоколToolStripMenuItem_Click);
 			// 
@@ -139,6 +139,7 @@
 			this.statusStrip1.Location = new System.Drawing.Point(0, 215);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(763, 22);
+			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 5;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -163,6 +164,7 @@
 			this.Controls.Add(this.selectedFilePathTextBox);
 			this.Controls.Add(this.postButton);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "Form1";
