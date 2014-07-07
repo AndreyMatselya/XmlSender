@@ -9,7 +9,7 @@ namespace XmlSender.Data
 {
 	public class XmlSenderContext:IXmlSenderContext
 	{
-		XmlSenderDatabase _database;
+		readonly XmlSenderDatabase _database;
 		IResponseRepository _responses;
 
 		public XmlSenderContext()
