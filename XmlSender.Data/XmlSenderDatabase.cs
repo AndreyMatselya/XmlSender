@@ -18,5 +18,8 @@ namespace XmlSender.Data
 		//public DbSet<UserProfile> UserProfiles1 { get; set; }
 
 	    public DbSet<Response> Responses { get; set; }
+
+
+		public DbSet<Xml> Xmls { get; set; }
 	}
 }

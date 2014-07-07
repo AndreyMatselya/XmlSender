@@ -11,6 +11,7 @@ namespace XmlSender.Data
 	{
 		readonly XmlSenderDatabase _database;
 		IResponseRepository _responses;
+		IXmlRepository _xmls;
 
 		public XmlSenderContext()
 		{
@@ -20,6 +21,11 @@ namespace XmlSender.Data
 		public IResponseRepository Responses
 		{
 			get { return _responses ?? (_responses = new ResponseRepository(_database)); }
+		}
+
+		public IXmlRepository Xmls
+		{
+			get { return _xmls ?? (_xmls = new XmlRepository(_database)); }
 		}
 
 		private static XmlSenderContext _repositories;

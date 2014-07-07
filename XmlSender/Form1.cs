@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Security.Authentication;
 using System.Text;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace XmlSender
 		}
 
 		private Root _file;
+		//private string _xmlFile;
 		private readonly SoapClient _soapClient;
 		private BackgroundWorker _backgroundWorker;
 
@@ -59,15 +61,26 @@ namespace XmlSender
 		private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			var xmlId = Guid.NewGuid();
+			string xmlContent;
+			using (var objReader = new StreamReader(this.selectedFilePathTextBox.Text))
+			{
+				xmlContent = objReader.ReadToEnd();
+			}
+			var xmlEntity = XmlSenderContext.Repositories.Xmls.Insert(new Xml()
+			{
+				SendDate = DateTime.Now,
+				Id = xmlId,
+				UserName = User.CurrentUser.UserNameToken.Username,
+				XmlBody = xmlContent
+			});
 			using (_soapClient)
 			{
 				for (var i = 0; i < _file.Items.Count; i++)
 				{
 					WsReturnCode soapResponse;
+					var idr = _file.Items[i];
 					try
 					{
-
-						var idr = _file.Items[i];
 						soapResponse = _soapClient.PostData(idr);
 						//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
 					}
@@ -83,13 +96,14 @@ namespace XmlSender
 					}
 					try
 					{
-						var response = new Response();
-						response.XmlId = xmlId;
-						response.DateCreated = DateTime.Now;
-						response.UserName = User.CurrentUser.UserNameToken.Username;
-						response.Errors = Serialize(soapResponse.error_list);
-						response.Cover = Serialize(soapResponse.cover);
-						XmlSenderContext.Repositories.Responses.Insert(response);
+						var response = new Response
+						{
+							DateCreated = DateTime.Now,
+							Errors = Serialize(soapResponse.error_list),
+							Cover = Serialize(soapResponse.cover),
+							Identif = idr.insurance_info.person_data.identif
+						};
+						XmlSenderContext.Repositories.Xmls.AddResponse(xmlEntity,response);//.Insert(response);
 					}
 					catch (Exception ex)
 					{

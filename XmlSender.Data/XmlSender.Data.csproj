@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Xml.cs" />
+    <Compile Include="Repositories\XmlRepository.cs" />
     <Compile Include="XmlSenderContext\XmlSenderContext.cs" />
     <Compile Include="XmlSenderContext\IXmlSenderContext.cs" />
     <Compile Include="Entities\Response.cs" />
