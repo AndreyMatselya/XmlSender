@@ -22,5 +22,11 @@ namespace XmlSender.Data.Entities
 		public string Identif { get; set; }
 
 		public Xml Xml { get; set; }
+
+		public DateTime InsuranceAwardingDate { get; set; }
+
+		public string InsuranceSuspensionDate { get; set; }
+
+		public int ErrorsCount { get; set; }
     }
 }

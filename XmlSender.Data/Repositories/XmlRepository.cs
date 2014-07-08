@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XmlSender.Data.Entities;
 
 namespace XmlSender.Data.Repositories
@@ -19,9 +16,16 @@ namespace XmlSender.Data.Repositories
 			return xml;
 		}
 
+		public Xml Update(Xml xml)
+		{
+			_context.Entry(xml).State = EntityState.Modified;
+			_context.SaveChanges();
+			return xml;
+		}
+
 		public IQueryable<Xml> All
 		{
-			get { return _context.Xmls.Include("Responses"); }
+			get { return _context.Xmls; }
 			
 		}
 
@@ -45,6 +49,7 @@ namespace XmlSender.Data.Repositories
 	public interface IXmlRepository
 	{
 		Xml Insert(Xml xml);
+		Xml Update(Xml xml);
 		IQueryable<Xml> All { get; }
 		void AddResponse(Xml xml, Response response);
 	}

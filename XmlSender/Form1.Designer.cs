@@ -41,14 +41,20 @@
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SendDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// postButton
 			// 
 			this.postButton.Enabled = false;
-			this.postButton.Location = new System.Drawing.Point(611, 186);
+			this.postButton.Location = new System.Drawing.Point(613, 240);
 			this.postButton.Name = "postButton";
 			this.postButton.Size = new System.Drawing.Size(143, 23);
 			this.postButton.TabIndex = 0;
@@ -58,7 +64,7 @@
 			// 
 			// openFileButton
 			// 
-			this.openFileButton.Location = new System.Drawing.Point(536, 91);
+			this.openFileButton.Location = new System.Drawing.Point(569, 51);
 			this.openFileButton.Name = "openFileButton";
 			this.openFileButton.Size = new System.Drawing.Size(37, 23);
 			this.openFileButton.TabIndex = 3;
@@ -74,7 +80,7 @@
             this.историяОперацийToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(763, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(768, 24);
 			this.menuStrip1.TabIndex = 1;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -111,7 +117,7 @@
 			// selectedFilePathTextBox
 			// 
 			this.selectedFilePathTextBox.Enabled = false;
-			this.selectedFilePathTextBox.Location = new System.Drawing.Point(110, 93);
+			this.selectedFilePathTextBox.Location = new System.Drawing.Point(143, 53);
 			this.selectedFilePathTextBox.Name = "selectedFilePathTextBox";
 			this.selectedFilePathTextBox.Size = new System.Drawing.Size(420, 20);
 			this.selectedFilePathTextBox.TabIndex = 2;
@@ -120,7 +126,7 @@
 			// selectedFileLabel
 			// 
 			this.selectedFileLabel.AutoSize = true;
-			this.selectedFileLabel.Location = new System.Drawing.Point(107, 64);
+			this.selectedFileLabel.Location = new System.Drawing.Point(140, 24);
 			this.selectedFileLabel.Name = "selectedFileLabel";
 			this.selectedFileLabel.Size = new System.Drawing.Size(110, 13);
 			this.selectedFileLabel.TabIndex = 4;
@@ -136,9 +142,9 @@
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 215);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 275);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(763, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(768, 22);
 			this.statusStrip1.SizingGrip = false;
 			this.statusStrip1.TabIndex = 5;
 			this.statusStrip1.Text = "statusStrip1";
@@ -153,11 +159,58 @@
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
 			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToDeleteRows = false;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.SendDate,
+            this.UserName,
+            this.Description});
+			this.dataGridView1.Location = new System.Drawing.Point(12, 84);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.ReadOnly = true;
+			this.dataGridView1.Size = new System.Drawing.Size(744, 150);
+			this.dataGridView1.TabIndex = 6;
+			// 
+			// Id
+			// 
+			this.Id.DataPropertyName = "Id";
+			this.Id.HeaderText = "Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			this.Id.Width = 50;
+			// 
+			// SendDate
+			// 
+			this.SendDate.DataPropertyName = "SendDate";
+			this.SendDate.HeaderText = "Дата отправки";
+			this.SendDate.Name = "SendDate";
+			this.SendDate.ReadOnly = true;
+			// 
+			// UserName
+			// 
+			this.UserName.DataPropertyName = "UserName";
+			this.UserName.HeaderText = "Пользователь";
+			this.UserName.Name = "UserName";
+			this.UserName.ReadOnly = true;
+			// 
+			// Description
+			// 
+			this.Description.DataPropertyName = "Description";
+			this.Description.HeaderText = "Описание";
+			this.Description.Name = "Description";
+			this.Description.ReadOnly = true;
+			this.Description.Width = 434;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(763, 237);
+			this.ClientSize = new System.Drawing.Size(768, 297);
+			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.selectedFileLabel);
 			this.Controls.Add(this.openFileButton);
@@ -169,11 +222,13 @@
 			this.MaximizeBox = false;
 			this.Name = "Form1";
 			this.Text = "АРМ Белгосстраха для обмена данными с ГИС \"Регистр населения\"";
+			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Shown += new System.EventHandler(this.Form1_Shown);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -193,6 +248,11 @@
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn SendDate;
+		private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Description;
 
 	}
 }

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.IO;
+using System.Linq;
 using System.Security.Authentication;
 using System.Text;
 using System.Windows.Forms;
@@ -75,6 +78,7 @@ namespace XmlSender
 			});
 			using (_soapClient)
 			{
+				var withoutErrorsCount = 0;
 				for (var i = 0; i < _file.Items.Count; i++)
 				{
 					WsReturnCode soapResponse;
@@ -101,9 +105,17 @@ namespace XmlSender
 							DateCreated = DateTime.Now,
 							Errors = Serialize(soapResponse.error_list),
 							Cover = Serialize(soapResponse.cover),
-							Identif = idr.insurance_info.person_data.identif
+							Identif = idr.insurance_info.person_data.identif,
+							ErrorsCount = soapResponse.error_list.Count(),
+							InsuranceAwardingDate = idr.insurance_info.insurance_data.insurance_awarding_date,
+							InsuranceSuspensionDate = idr.insurance_info.insurance_data.insurance_suspension_date
 						};
-						XmlSenderContext.Repositories.Xmls.AddResponse(xmlEntity,response);//.Insert(response);
+						if (!soapResponse.error_list.Any())
+						{
+							withoutErrorsCount++;
+						}
+						xmlEntity.Description = string.Format("Всего в документе:{0}. Отправлено:{1}. Загружено:{2}", _file.Items.Count, i + 1, withoutErrorsCount);
+						XmlSenderContext.Repositories.Xmls.AddResponse(xmlEntity, response);//.Insert(response);
 					}
 					catch (Exception ex)
 					{
@@ -215,6 +227,37 @@ namespace XmlSender
 		private void протоколToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show("История операций не реализована", "Информация!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			//var col1 = new DataGridViewTextBoxColumn {DataPropertyName = "Id", HeaderText = "Id", Name = "Id"};
+			//dataGridView1.Columns.Add(col1);
+			//var col2 = new DataGridViewTextBoxColumn { DataPropertyName = "SendDate", HeaderText = "Дата отправки", Name = "SendDate" };
+			//dataGridView1.Columns.Add(col2);
+			//var col3 = new DataGridViewTextBoxColumn { DataPropertyName = "UserName", HeaderText = "пользователь", Name = "UserName" };
+			//dataGridView1.Columns.Add(col3);
+			//var col4 = new DataGridViewTextBoxColumn { DataPropertyName = "Description", HeaderText = "апыа", Name = "Description" };
+			//dataGridView1.Columns.Add(col4);
+			dataGridView1.DataSource = XmlSenderContext.Repositories.Xmls.All.Select(x => new XmlRowGrid
+			{
+				Id = x.Id,
+				Description = x.Description,
+				SendDate = x.SendDate,
+				UserName = x.UserName
+			}).ToList();
+			//this.dataGridView1.DataSource = new List<string[]>() { , new[] { "123123", "12313", "12312" } };
+		}
+
+		public class XmlRowGrid
+		{
+			public Guid Id { get; set; }
+
+			public DateTime SendDate { get; set; }
+
+			public string UserName { get; set; }
+
+			public string Description { get; set; }
 		}
 	}
 
