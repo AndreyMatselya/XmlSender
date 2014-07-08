@@ -169,11 +169,13 @@
             this.SendDate,
             this.UserName,
             this.Description});
-			this.dataGridView1.Location = new System.Drawing.Point(12, 84);
+			this.dataGridView1.Location = new System.Drawing.Point(12, 24);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.Size = new System.Drawing.Size(744, 150);
+			this.dataGridView1.Size = new System.Drawing.Size(744, 210);
 			this.dataGridView1.TabIndex = 6;
+			this.dataGridView1.Visible = false;
+			this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
 			// 
 			// Id
 			// 
@@ -210,13 +212,13 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(768, 297);
-			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.selectedFileLabel);
 			this.Controls.Add(this.openFileButton);
 			this.Controls.Add(this.selectedFilePathTextBox);
 			this.Controls.Add(this.postButton);
 			this.Controls.Add(this.menuStrip1);
+			this.Controls.Add(this.dataGridView1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;

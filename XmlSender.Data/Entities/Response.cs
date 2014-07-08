@@ -28,5 +28,7 @@ namespace XmlSender.Data.Entities
 		public string InsuranceSuspensionDate { get; set; }
 
 		public int ErrorsCount { get; set; }
+
+		public string ErrorsText { get; set; }
     }
 }
