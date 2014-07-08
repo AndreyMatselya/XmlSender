@@ -250,16 +250,4 @@ namespace XmlSender
 			moreInfForm.ShowDialog();
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 }
