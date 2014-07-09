@@ -114,10 +114,10 @@ namespace XmlSender
 
 		void serializer_UnknownElement(object sender, XmlElementEventArgs e)
 		{
-			MessageBox.Show(
-				string.Format("Ошибка при чтении документа. Неизвестный элемент: {0}. Строка: {1}", e.Element.Name,
-					e.LineNumber), @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			_file = null;
+			throw new Exception(
+				string.Format("Ошибка при чтении документа. Неизвестный элемент: {0}. Строка: {1}", e.Element.Name,
+					e.LineNumber));
 		}
 
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,6 +154,7 @@ namespace XmlSender
 				{
 					MessageBox.Show(ex.Message + " " + (ex.InnerException != null ? ex.InnerException.Message : string.Empty), @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					this.postButton.Enabled = false;
+					this.selectedFilePathTextBox.Text = string.Empty;
 				}
 			}
 		}
@@ -169,8 +170,8 @@ namespace XmlSender
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
-			var authForm = new AuthenticationForm();
-			authForm.ShowDialog();
+			//var authForm = new AuthenticationForm();
+			//authForm.ShowDialog();
 		}
 
 		public void Authenticate()
