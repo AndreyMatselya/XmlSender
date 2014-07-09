@@ -24,6 +24,7 @@ namespace XmlSender
 		private Root _file;
 		private readonly SoapClient _soapClient;
 		private BackgroundWorker _backgroundWorker;
+		private IEnumerable<XmlRowGrid> _xmlDataSource;
 
 		private void button1_Click(object sender, EventArgs e)
 		{
@@ -170,8 +171,8 @@ namespace XmlSender
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
-			//var authForm = new AuthenticationForm();
-			//authForm.ShowDialog();
+			var authForm = new AuthenticationForm();
+			authForm.ShowDialog();
 		}
 
 		public void Authenticate()
@@ -205,14 +206,14 @@ namespace XmlSender
 			_backgroundWorker.RunWorkerAsync();
 			SwitchVisibleOpenFileControls(false);
 			this.dataGridView1.Visible = true;
+			this.dataGridView1.UseWaitCursor = true;
 		}
 
 		private void backgroundWorker_GetXmlDataCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
 			this.dataGridView1.DataSource = _xmlDataSource;
+			this.dataGridView1.UseWaitCursor = false;
 		}
-
-		private IEnumerable<XmlRowGrid> _xmlDataSource;
 
 		private void backgroundWorker_GetXmlData(object sender, DoWorkEventArgs e)
 		{
