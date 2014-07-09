@@ -25,9 +25,9 @@ namespace XmlSender
 			InitializeComponent();
 		}
 
-		private Guid _xmlId;
+		private readonly Guid _xmlId;
 
-		private IList<DetailsRowGrid> _details; 
+		private readonly IList<DetailsRowGrid> _details; 
 
 		public MoreInformationForm(Guid id):this()
 		{
