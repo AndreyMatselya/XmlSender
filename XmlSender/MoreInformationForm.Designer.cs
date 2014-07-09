@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.button1 = new System.Windows.Forms.Button();
 			this.XmlId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ParentMessageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Success = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Errors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -53,15 +53,6 @@
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.Size = new System.Drawing.Size(1054, 669);
 			this.dataGridView1.TabIndex = 0;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(12, 7);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(153, 23);
-			this.button1.TabIndex = 1;
-			this.button1.Text = "Сохранить в XML";
-			this.button1.UseVisualStyleBackColor = true;
 			// 
 			// XmlId
 			// 
@@ -96,6 +87,16 @@
 			this.Errors.HeaderText = "Ошибки";
 			this.Errors.Name = "Errors";
 			this.Errors.Width = 700;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(12, 7);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(153, 23);
+			this.button1.TabIndex = 1;
+			this.button1.Text = "Сохранить в XML";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// MoreInformationForm
 			// 

@@ -171,8 +171,8 @@ namespace XmlSender
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
-			var authForm = new AuthenticationForm();
-			authForm.ShowDialog();
+			//var authForm = new AuthenticationForm();
+			//authForm.ShowDialog();
 		}
 
 		public void Authenticate()

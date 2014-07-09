@@ -9,10 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Serialization;
 using XmlSender.Common;
 using XmlSender.Data;
 using XmlSender.ServiceReference3;
+using XmlSender.Soap;
 
 namespace XmlSender
 {
@@ -25,12 +27,12 @@ namespace XmlSender
 
 		private Guid _xmlId;
 
-		private ICollection<DetailsRowGrid> _details; 
+		private IList<DetailsRowGrid> _details; 
 
 		public MoreInformationForm(Guid id):this()
 		{
 			_xmlId = id;
-			_details = new Collection<DetailsRowGrid>();
+			_details = new List<DetailsRowGrid>();
 		}
 
 		private void MoreInformationForm_Load(object sender, EventArgs e)
@@ -49,6 +51,20 @@ namespace XmlSender
 				_details.Add(row);
 			}
 			this.dataGridView1.DataSource = _details;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			var saveFileDialog1 = new SaveFileDialog
+			{
+				Filter = @"xml files (*.xml)|*.xml",
+				RestoreDirectory = true
+			};
+			if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
+			var xDoc = new XmlDocument();
+			var srtXml = XmlHelper.Serialize(_details.ToList());
+			xDoc.LoadXml(srtXml);
+			xDoc.Save(saveFileDialog1.FileName);
 		}
 	}
 }
