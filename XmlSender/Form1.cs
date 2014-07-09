@@ -22,7 +22,6 @@ namespace XmlSender
 		}
 
 		private Root _file;
-		//private string _xmlFile;
 		private readonly SoapClient _soapClient;
 		private BackgroundWorker _backgroundWorker;
 
@@ -34,7 +33,6 @@ namespace XmlSender
 			_backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
 			_backgroundWorker.RunWorkerAsync();
 			SwitchControlsAtTimePostData(false);
-			//MessageBox.Show(Thread.CurrentThread.ManagedThreadId.ToString());
 		}
 
 		void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -47,11 +45,11 @@ namespace XmlSender
 		{
 			if (e.Error != null)
 			{
-				MessageBox.Show(e.Error.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(e.Error.Message, @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			else
 			{
-				MessageBox.Show("Отправка данных завершена", "Информация!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(@"Отправка данных завершена", @"Информация!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			SwitchControlsAtTimePostData(true);
 		}
@@ -118,7 +116,7 @@ namespace XmlSender
 		{
 			MessageBox.Show(
 				string.Format("Ошибка при чтении документа. Неизвестный элемент: {0}. Строка: {1}", e.Element.Name,
-					e.LineNumber), "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					e.LineNumber), @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			_file = null;
 		}
 
@@ -134,7 +132,7 @@ namespace XmlSender
 
 		private void ShowOpenFileDialog()
 		{
-			openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+			openFileDialog1.Filter = @"xml files (*.xml)|*.xml|All files (*.*)|*.*";
 			openFileDialog1.FilterIndex = 1;
 			openFileDialog1.RestoreDirectory = true;
 			openFileDialog1.FileOk += openFileDialog1_FileOk;
@@ -154,7 +152,7 @@ namespace XmlSender
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message + " " + (ex.InnerException != null ? ex.InnerException.Message : string.Empty), "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(ex.Message + " " + (ex.InnerException != null ? ex.InnerException.Message : string.Empty), @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					this.postButton.Enabled = false;
 				}
 			}
@@ -171,8 +169,8 @@ namespace XmlSender
 
 		private void Form1_Shown(object sender, EventArgs e)
 		{
-			//var authForm = new AuthenticationForm();
-			//authForm.ShowDialog();
+			var authForm = new AuthenticationForm();
+			authForm.ShowDialog();
 		}
 
 		public void Authenticate()
@@ -188,12 +186,12 @@ namespace XmlSender
 			}
 			catch (AuthenticationException ex)
 			{
-				MessageBox.Show(ex.Message, "Ошибка аутентификации!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, @"Ошибка аутентификации!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(ex.Message, @"Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
