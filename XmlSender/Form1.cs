@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Security.Authentication;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Serialization;
 using XmlSender.Common;
 using XmlSender.Data;
 using XmlSender.Data.Entities;
-using XmlSender.ServiceReference3;
 using XmlSender.Soap;
 
 namespace XmlSender
@@ -90,24 +86,22 @@ namespace XmlSender
 					var idr = _file.Items[i];
 					try
 					{
-						XmlHelper.CheckIRD(idr);
+						XmlHelper.CheckIRD(idr, i + 1);
 						var soapResponse = _soapClient.PostData(idr);
 						var response = new Response
 						{
 							DateCreated = DateTime.Now,
-							Errors = Serialize(soapResponse.error_list),
-							Cover = Serialize(soapResponse.cover),
-							Identif = idr.insurance_info.person_data.identif,
-							ErrorsCount = soapResponse.error_list.Count(),
-							InsuranceAwardingDate = idr.insurance_info.insurance_data.insurance_awarding_date,
-							InsuranceSuspensionDate = idr.insurance_info.insurance_data.insurance_suspension_date,
-							ErrorsText = soapResponse.error_list.Aggregate(string.Empty, (current, error) => current + string.Format("{0} - {1}. ", error.error_code.code, error.description))
+							Errors = soapResponse.error_list == null ? null : XmlHelper.Serialize(soapResponse.error_list),
+							Cover = XmlHelper.Serialize(soapResponse.cover),
+							ErrorsCount = soapResponse.error_list == null ? 0 : soapResponse.error_list.Count(),
+							ParentMessageId = idr.cover.parent_message_id,
+							ErrorsText = soapResponse.error_list == null ? string.Empty : soapResponse.error_list.Aggregate(string.Empty, (current, error) => current + string.Format("{0} - {1}. ", error.error_code.code, error.description))
 						};
-						if (!soapResponse.error_list.Any())
+						if (soapResponse.error_list == null || !soapResponse.error_list.Any())
 						{
 							withoutErrorsCount++;
 						}
-						xmlEntity.Description = string.Format("Всего в документе:{0}. Отправлено:{1}. Загружено:{2}", _file.Items.Count,
+						xmlEntity.Description = string.Format("Всего в документе: {0}. Отправлено: {1}. Загружено: {2}", _file.Items.Count,
 							i + 1, withoutErrorsCount);
 						XmlSenderContext.Repositories.Xmls.AddResponse(xmlEntity, response);
 					}
@@ -116,22 +110,8 @@ namespace XmlSender
 						_backgroundWorker.ReportProgress((100*(i + 1))/_file.Items.Count,
 							string.Format("{0}/{1}", i + 1, _file.Items.Count));
 					}
-
 				}
 			}
-		}
-
-
-
-		private static string Serialize<T>(T obj)
-		{
-			var serializer = new XmlSerializer(typeof(T));
-			var sb = new StringBuilder();
-			using (var writer = XmlWriter.Create(sb))
-			{
-				serializer.Serialize(writer, obj);
-			}
-			return sb.ToString();
 		}
 
 		void serializer_UnknownElement(object sender, XmlElementEventArgs e)
@@ -174,7 +154,7 @@ namespace XmlSender
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(ex.Message + " " + (ex.InnerException != null ? ex.InnerException.Message : string.Empty), "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					this.postButton.Enabled = false;
 				}
 			}
@@ -220,15 +200,30 @@ namespace XmlSender
 		private void протоколToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			this.postButton.Enabled = false;
-			this.dataGridView1.DataSource = XmlSenderContext.Repositories.Xmls.All.OrderByDescending(x => x.SendDate).Select(x => new XmlRowGrid
+			_backgroundWorker = new BackgroundWorker ();
+			_backgroundWorker.DoWork += backgroundWorker_GetXmlData;
+			_backgroundWorker.RunWorkerCompleted += backgroundWorker_GetXmlDataCompleted;
+			_backgroundWorker.RunWorkerAsync();
+			SwitchVisibleOpenFileControls(false);
+			this.dataGridView1.Visible = true;
+		}
+
+		private void backgroundWorker_GetXmlDataCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			this.dataGridView1.DataSource = _xmlDataSource;
+		}
+
+		private IEnumerable<XmlRowGrid> _xmlDataSource;
+
+		private void backgroundWorker_GetXmlData(object sender, DoWorkEventArgs e)
+		{
+			_xmlDataSource = XmlSenderContext.Repositories.Xmls.All.OrderByDescending(x => x.SendDate).Select(x => new XmlRowGrid
 			{
 				Id = x.Id,
 				Description = x.Description,
 				SendDate = x.SendDate,
 				UserName = x.UserName
 			}).ToList();
-			SwitchVisibleOpenFileControls(false);
-			this.dataGridView1.Visible = true;
 		}
 
 		private void SwitchVisibleOpenFileControls(bool flag)

@@ -37,16 +37,15 @@ namespace XmlSender
 		{
 			var details = XmlSenderContext.Repositories.Responses.All.Where(x => x.Xml.Id == _xmlId).OrderByDescending(x=>x.DateCreated);
 			//var serializer = new XmlSerializer(typeof (WsError[]));
-			foreach (var detail in details)
+			foreach (var row in details.Select(detail => new DetailsRowGrid
 			{
-				var row = new DetailsRowGrid();
-				row.XmlId = _xmlId;
-				row.DateCreated = detail.DateCreated;
-				row.Identif = detail.Identif;
-				row.InsuranceAwardingDate = detail.InsuranceAwardingDate;
-				row.InsuranceSuspensionDate = detail.InsuranceSuspensionDate;
-				row.Success = detail.ErrorsCount == 0 ? "Да" : "Нет";
-				row.Errors = detail.ErrorsText;
+				XmlId = _xmlId,
+				DateCreated = detail.DateCreated,
+				ParentMessageId = detail.ParentMessageId,
+				Success = detail.ErrorsCount == 0 ? "Да" : "Нет",
+				Errors = detail.ErrorsText
+			}))
+			{
 				_details.Add(row);
 			}
 			this.dataGridView1.DataSource = _details;

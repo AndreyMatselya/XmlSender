@@ -205,7 +205,7 @@
 			this.Description.HeaderText = "Описание";
 			this.Description.Name = "Description";
 			this.Description.ReadOnly = true;
-			this.Description.Width = 434;
+			this.Description.Width = 450;
 			// 
 			// Form1
 			// 
