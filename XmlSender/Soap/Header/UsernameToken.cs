@@ -49,6 +49,7 @@ namespace XmlSender.Soap.Header
 			writer.WriteValue(this.Password);
 			writer.WriteEndElement();
 			writer.WriteEndElement();
+			writer.WriteElementString("SignDate", Constants.WssecuritySecextNamespace, DateTime.Now.ToString("yyyy-MM-ddThh:mm:ss"));
 		}
 	}
 }
