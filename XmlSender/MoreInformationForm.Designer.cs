@@ -34,6 +34,9 @@
 			this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ParentMessageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Success = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.ErrorsText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.SuccessID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Identif = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Errors = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
@@ -48,6 +51,9 @@
             this.DateCreated,
             this.ParentMessageId,
             this.Success,
+            this.ErrorsText,
+            this.SuccessID,
+            this.Identif,
             this.Errors});
 			this.dataGridView1.Location = new System.Drawing.Point(12, 36);
 			this.dataGridView1.Name = "dataGridView1";
@@ -91,12 +97,33 @@
 			this.Success.Name = "Success";
 			this.Success.Width = 60;
 			// 
+			// ErrorsText
+			// 
+			this.ErrorsText.DataPropertyName = "ErrorsText";
+			this.ErrorsText.HeaderText = "Ошибки";
+			this.ErrorsText.Name = "ErrorsText";
+			this.ErrorsText.Width = 730;
+			// 
+			// SuccessID
+			// 
+			this.SuccessID.DataPropertyName = "SuccessID";
+			this.SuccessID.HeaderText = "Успешно";
+			this.SuccessID.Name = "SuccessID";
+			this.SuccessID.Visible = false;
+			// 
+			// Identif
+			// 
+			this.Identif.DataPropertyName = "Identif";
+			this.Identif.HeaderText = "Идентиф";
+			this.Identif.Name = "Identif";
+			this.Identif.Visible = false;
+			// 
 			// Errors
 			// 
 			this.Errors.DataPropertyName = "Errors";
-			this.Errors.HeaderText = "Ошибки";
+			this.Errors.HeaderText = "ОшибкиXml";
 			this.Errors.Name = "Errors";
-			this.Errors.Width = 730;
+			this.Errors.Visible = false;
 			// 
 			// MoreInformationForm
 			// 
@@ -122,6 +149,9 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn DateCreated;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ParentMessageId;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Success;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ErrorsText;
+		private System.Windows.Forms.DataGridViewTextBoxColumn SuccessID;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Identif;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Errors;
 	}
 }

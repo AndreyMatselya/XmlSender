@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 using XmlSender.Common;
 using XmlSender.Data;
 using XmlSender.Data.Entities;
+using XmlSender.ServiceReference1;
 using XmlSender.Soap;
 
 namespace XmlSender
@@ -90,11 +91,12 @@ namespace XmlSender
 						var response = new Response
 						{
 							DateCreated = DateTime.Now,
-							Errors = soapResponse.error_list == null ? null : XmlHelper.Serialize(soapResponse.error_list),
+							ErrorsXml = soapResponse.error_list == null ? null : XmlHelper.Serialize(soapResponse.error_list),
 							Cover = XmlHelper.Serialize(soapResponse.cover),
 							ErrorsCount = soapResponse.error_list == null ? 0 : soapResponse.error_list.Count(),
 							ParentMessageId = idr.cover.parent_message_id,
-							ErrorsText = soapResponse.error_list == null ? string.Empty : soapResponse.error_list.Aggregate(string.Empty, (current, error) => current + string.Format("{0} - {1}. ", error.error_code.code, error.description))
+							Identif = idr.insurance_info.person_data.identif,
+							ErrorsText = soapResponse.error_list == null ? string.Empty : soapResponse.error_list.Aggregate(string.Empty, (current, error) => current + string.Format("{0} - {1} ({2}). ", error.error_code.code, error.description, ((ServiceReference3.LangValue)error.error_code.lexema.GetValue(0)).Value  ))
 						};
 						if (soapResponse.error_list == null || !soapResponse.error_list.Any())
 						{

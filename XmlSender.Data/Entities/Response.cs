@@ -15,7 +15,7 @@ namespace XmlSender.Data.Entities
 
 		public string Cover { get; set; }
 
-		public string Errors { get; set; }
+		public string ErrorsXml { get; set; }
 
 		public DateTime DateCreated { get; set; }
 
@@ -26,5 +26,7 @@ namespace XmlSender.Data.Entities
 		public int ErrorsCount { get; set; }
 
 		public string ErrorsText { get; set; }
+
+		public string Identif { get; set; }
     }
 }

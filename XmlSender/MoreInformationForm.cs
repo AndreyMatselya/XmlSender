@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Serialization;
 using XmlSender.Common;
 using XmlSender.Data;
-using XmlSender.ServiceReference3;
 using XmlSender.Soap;
 
 namespace XmlSender
@@ -37,18 +29,11 @@ namespace XmlSender
 
 		private void MoreInformationForm_Load(object sender, EventArgs e)
 		{
-			var details = XmlSenderContext.Repositories.Responses.All.Where(x => x.Xml.Id == _xmlId).OrderByDescending(x=>x.DateCreated);
+			var details = XmlSenderContext.Repositories.Responses.All.Include("Xml").Where(x => x.Xml.Id == _xmlId).OrderByDescending(x=>x.DateCreated);
 			//var serializer = new XmlSerializer(typeof (WsError[]));
-			foreach (var row in details.Select(detail => new DetailsRowGrid
+			foreach (var row in details)
 			{
-				XmlId = _xmlId,
-				DateCreated = detail.DateCreated,
-				ParentMessageId = detail.ParentMessageId,
-				Success = detail.ErrorsCount == 0 ? "Да" : "Нет",
-				Errors = detail.ErrorsText
-			}))
-			{
-				_details.Add(row);
+				_details.Add(new DetailsRowGrid(row));
 			}
 			this.dataGridView1.DataSource = _details;
 		}
