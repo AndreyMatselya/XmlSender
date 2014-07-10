@@ -18,6 +18,8 @@ namespace XmlSender.Common
 
 		public byte SuccessId { get; set; }
 
+		public string Identif { get; set; }
+
 		[XmlIgnore]
 		public string ErrorsText { get; set; }
 
@@ -33,6 +35,7 @@ namespace XmlSender.Common
 			DateCreated = response.DateCreated;
 			ParentMessageId = response.ParentMessageId;
 			Success = response.ErrorsCount == 0 ? "Да" : "Нет";
+			Identif = response.Identif;
 			ErrorsText = response.ErrorsText;
 			SuccessId = response.ErrorsCount == 0 ? (byte) 0 : (byte) 1;
 			if (string.IsNullOrEmpty(response.ErrorsXml)) return;
