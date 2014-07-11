@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Security.Authentication;
@@ -20,7 +22,7 @@ namespace XmlSender
 		{
 			InitializeComponent();
 			_soapClient = new SoapClient();
-			SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+			this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
 		}
 
 		private Root _file;
@@ -42,7 +44,28 @@ namespace XmlSender
 		{
 			toolStripProgressBar1.Value = e.ProgressPercentage;
 			progressLabel.Text = e.UserState as String;
+			//pbPrecentage(toolStripProgressBar1);
 		}
+
+
+		//private void pbPrecentage(ToolStripProgressBar pb)
+		//{
+		//	int percent = (int)(((double)(pb.Value - pb.Minimum) /
+		//	(double)(pb.Maximum - pb.Minimum)) * 100);
+
+		//	using (Graphics gr = pb.ProgressBar.CreateGraphics())
+		//	{
+		//		//Switch to Antialiased drawing for better (smoother) graphic results
+		//		gr.SmoothingMode = SmoothingMode.AntiAlias;
+		//		gr.DrawString(progressLabel.Text,
+		//			SystemFonts.DefaultFont,
+		//			Brushes.Black,
+		//			new PointF(pb.Width / 2 - (gr.MeasureString(percent.ToString() + "%",
+		//				SystemFonts.DefaultFont).Width / 2.0F),
+		//			pb.Height / 2 - (gr.MeasureString(percent.ToString() + "%",
+		//				SystemFonts.DefaultFont).Height / 2.0F)));
+		//	}
+		//}
 
 		void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
