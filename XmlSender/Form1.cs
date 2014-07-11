@@ -20,6 +20,7 @@ namespace XmlSender
 		{
 			InitializeComponent();
 			_soapClient = new SoapClient();
+			SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 		}
 
 		private Root _file;
@@ -40,7 +41,7 @@ namespace XmlSender
 		void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
 		{
 			toolStripProgressBar1.Value = e.ProgressPercentage;
-			toolStripStatusLabel1.Text = e.UserState as String;
+			progressLabel.Text = e.UserState as String;
 		}
 
 		void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -245,6 +246,15 @@ namespace XmlSender
 			var id = (Guid) this.dataGridView1.Rows[e.RowIndex].Cells["Id"].Value;
 			var moreInfForm = new MoreInformationForm(id);
 			moreInfForm.ShowDialog();
+		}
+
+		private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+		{
+			var index = e.RowIndex;
+			var indexStr = (index + 1).ToString();
+			var header = this.dataGridView1.Rows[index].HeaderCell.Value;
+			if (header == null || !header.Equals(indexStr))
+				this.dataGridView1.Rows[index].HeaderCell.Value = indexStr;
 		}
 	}
 }

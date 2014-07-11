@@ -51,5 +51,14 @@ namespace XmlSender
 			xDoc.LoadXml(srtXml);
 			xDoc.Save(saveFileDialog1.FileName);
 		}
+
+		private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+		{
+			var index = e.RowIndex;
+			var indexStr = (index + 1).ToString();
+			var header = this.dataGridView1.Rows[index].HeaderCell.Value;
+			if (header == null || !header.Equals(indexStr))
+				this.dataGridView1.Rows[index].HeaderCell.Value = indexStr; 
+		}
 	}
 }

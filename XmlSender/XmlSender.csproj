@@ -78,12 +78,6 @@
     <Compile Include="MoreInformationForm.Designer.cs">
       <DependentUpon>MoreInformationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProgressBarForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>ProgressBarForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Soap\User.cs" />
@@ -111,14 +105,14 @@
     <Compile Include="Soap\Header\UsernameToken.cs" />
     <Compile Include="Soap\SoapClient.cs" />
     <Compile Include="Soap\XmlHelper.cs" />
+    <Compile Include="MyProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MoreInformationForm.resx">
       <DependentUpon>MoreInformationForm.cs</DependentUpon>
