@@ -214,8 +214,8 @@ namespace XmlSender
 
 		private void backgroundWorker_GetXmlDataCompleted(object sender, RunWorkerCompletedEventArgs e)
 		{
-			this.dataGridView1.DataSource = _xmlDataSource;
 			this.dataGridView1.UseWaitCursor = false;
+			this.dataGridView1.DataSource = _xmlDataSource;
 		}
 
 		private void backgroundWorker_GetXmlData(object sender, DoWorkEventArgs e)
